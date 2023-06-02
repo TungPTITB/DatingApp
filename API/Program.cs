@@ -1,6 +1,7 @@
 using System.Text;
 using API.Extensions;
 using API.Interfaces;
+using API.Middleware;
 using API.Services;
 using API.Thing;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -34,6 +35,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<ExceptionMiddleware>();
 app.UseHttpsRedirection();
 
 app.UseRouting();
