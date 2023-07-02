@@ -11,6 +11,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using API.DTOs;
 using API.Interfaces;
+using AutoMapper;
 
 namespace API.Controllers
 {
@@ -18,7 +19,9 @@ namespace API.Controllers
     {
         private readonly DataContext _context;
         private readonly ITokenService _tokenService;
-        public AccountController(DataContext context, ITokenService tokenService){
+        public readonly IMapper _mapper;
+        public AccountController(DataContext context, ITokenService tokenService, IMapper mapper){
+            _mapper = mapper;
             _tokenService = tokenService;
             _context = context;
         }
@@ -27,13 +30,14 @@ namespace API.Controllers
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto){
 
             if(await UserExists(registerDto.User)) return BadRequest("User is taken");
+            
+            var auser = _mapper.Map<AppUser>(registerDto);
+
             using var hmac = new HMACSHA512();
 
-            var auser = new AppUser{
-                User = registerDto.User,
-                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
-                PasswordSalt = hmac.Key
-            };
+                auser.User = registerDto.User;
+                auser.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
+                auser.PasswordSalt = hmac.Key;
 
             _context.Users.Add(auser);
             await _context.SaveChangesAsync();
@@ -41,30 +45,34 @@ namespace API.Controllers
             return new UserDto
             {
                 User = auser.User,
-                Token = _tokenService.CreateToken(auser)
+                Token = _tokenService.CreateToken(auser),
+                KnownAs = auser.KnownAs
             };
         }
 
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto logindto){
-            var user = await _context.Users
+            var auser = await _context.Users
+                .Include(p => p.Photos)
                 .SingleOrDefaultAsync(x => x.User == logindto.User);
 
-            if(user == null) return Unauthorized("Invalid user");
+            if(auser == null) return Unauthorized("Invalid user");
 
-            using var hmac = new HMACSHA512(user.PasswordSalt);
+            using var hmac = new HMACSHA512(auser.PasswordSalt);
 
             var computeHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(logindto.Password));
 
             for(int i=0 ; i< computeHash.Length ; i++){
-                if(computeHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid password");
+                if(computeHash[i] != auser.PasswordHash[i]) return Unauthorized("Invalid password");
 
             }
 
             return new UserDto
             {
-                User = user.User,
-                Token = _tokenService.CreateToken(user)
+                User = auser.User,
+                Token = _tokenService.CreateToken(auser),
+                PhotoUrl = auser.Photos.FirstOrDefault(x => x.IsMain)?.Url,
+                KnownAs = auser.KnownAs
             };
 
         }

@@ -21,6 +21,7 @@
 
         <div class="col text-end">
           <div ngbDropdown class="d-inline-block" *ngIf="(accountService.currentUser$ | async) as user">
+            <img src="{{user.photoUrl || './asset/user.png'}}" alt="{{user.user}}">
             <button type="button" class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>
               Welcome {{user.user | titlecase}}
             </button>

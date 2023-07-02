@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatTabsModule } from '@angular/material/tabs';
-import { NgxGalleryModule } from 'ngx-gallery';
+import { FileUploadModule } from 'ng2-file-upload';
+import { MatNativeDateModule } from '@angular/material/core';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
 
 @NgModule({
   declarations: [],
@@ -14,12 +18,16 @@ import { NgxGalleryModule } from 'ngx-gallery';
       positionClass: 'toast-bottom-right'
     }),
     MatTabsModule,
+    FileUploadModule
     
   ],
   exports: [
     NgbDropdownModule,
     ToastrModule,
-    MatTabsModule
+    MatTabsModule,
+    FileUploadModule,
+
+
   ]
 })
 export class SharedModule { }
