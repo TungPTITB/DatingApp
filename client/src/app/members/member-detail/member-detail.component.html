@@ -17,7 +17,7 @@
                 </div>
                 <div>
                     <strong>Last active:</strong>
-                    <p>{{member.lastActive}}</p>
+                    <p>{{member.lastActive | timeago}}</p>
                 </div>
                 <div>
                     <strong>Member since:</strong>
@@ -46,7 +46,7 @@
                 <p>{{member.interests}}</p>
             </mat-tab>
             <mat-tab label="Photos"  >
-                <!-- <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery> -->
+                <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
             </mat-tab>
             <mat-tab label="Messages" >
                 <p>Messages will go here</p>

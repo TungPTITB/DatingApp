@@ -45,8 +45,9 @@ namespace API.Controllers
             return new UserDto
             {
                 User = auser.User,
-                Token = _tokenService.CreateToken(auser),
-                KnownAs = auser.KnownAs
+                //Token = _tokenService.CreateToken(auser),
+                KnownAs = auser.KnownAs,
+                Gender = auser.Gender
             };
         }
 
@@ -70,9 +71,10 @@ namespace API.Controllers
             return new UserDto
             {
                 User = auser.User,
-                Token = _tokenService.CreateToken(auser),
+                //Token = _tokenService.CreateToken(auser),
                 PhotoUrl = auser.Photos.FirstOrDefault(x => x.IsMain)?.Url,
-                KnownAs = auser.KnownAs
+                KnownAs = auser.KnownAs,
+                Gender = auser.Gender
             };
 
         }

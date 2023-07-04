@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
-import { NgbDatepickerModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerModule, NgbDropdownModule, NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FileUploadModule } from 'ng2-file-upload';
 import { MatNativeDateModule } from '@angular/material/core';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { TimeagoModule } from 'ngx-timeago';
 
 
 @NgModule({
@@ -18,7 +21,12 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
       positionClass: 'toast-bottom-right'
     }),
     MatTabsModule,
-    FileUploadModule
+    FileUploadModule,
+    NgxGalleryModule,
+    BsDatepickerModule.forRoot(),
+    PaginationModule.forRoot(),
+    TimeagoModule.forRoot()
+    
     
   ],
   exports: [
@@ -26,7 +34,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     ToastrModule,
     MatTabsModule,
     FileUploadModule,
-
+    PaginationModule,
+    BsDatepickerModule,
+    NgxGalleryModule,
+    TimeagoModule
 
   ]
 })
