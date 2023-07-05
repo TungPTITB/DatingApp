@@ -15,12 +15,12 @@ namespace API.Services
     public class TokenService : ITokenService
     {
         private readonly SymmetricSecurityKey _key;
-        private readonly UserManager<AppUser> _userManager;
-        public TokenService(IConfiguration config, UserManager<AppUser> userManager)
-        {
-            _userManager = userManager;
-            _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
-        }
+        // private readonly UserManager<AppUser> _userManager;
+        // public TokenService(IConfiguration config, UserManager<AppUser> userManager)
+        // {
+        //     _userManager = userManager;
+        //     _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
+        // }
 
         public async Task<string> CreateToken(AppUser user)
         {
@@ -30,9 +30,9 @@ namespace API.Services
                 new Claim(JwtRegisteredClaimNames.UniqueName, user.User),
             };
 
-            var roles = await _userManager.GetRolesAsync(user);
+            // var roles = await _userManager.GetRolesAsync(user);
 
-            claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
+            // claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
 
             var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
 
