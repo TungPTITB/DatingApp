@@ -17,9 +17,9 @@
                             <small class="text-muted">
                                 <span class="fa fa-clock-o">{{message.messageSent + 'Z' | timeago}}</span>
                                 <span class="text-danger" *ngIf="!message.dateRead 
-                                    && message.senderUser !== user">(unread)</span>
+                                    && message.senderUser !== username">(unread)</span>
                                 <span class="text-success" *ngIf="message.dateRead 
-                                    && message.senderUser !== user">(read {{message.dateRead + 'Z' | timeago}})</span>
+                                    && message.senderUser !== username">(read {{message.dateRead + 'Z' | timeago}})</span>
                             </small>
                         </div>
                         <p>{{message.content}}</p>

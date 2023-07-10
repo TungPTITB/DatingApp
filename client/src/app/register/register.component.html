@@ -12,8 +12,8 @@
         </label>
     </div>
 
-    <app-text-input [formControl]="$any(registerForm.controls['user'])" 
-        [label]="'User'"></app-text-input>
+    <app-text-input [formControl]="$any(registerForm.controls['username'])" 
+        [label]="'Username'"></app-text-input>
     <app-text-input [formControl]="$any(registerForm.controls['knownAs'])" 
         [label]="'Known As'"></app-text-input>
     <app-date-picker [formControl]="$any(registerForm.controls['dateOfBirth'])" 
@@ -42,4 +42,3 @@
         <button class="btn btn-default" type="button" (click)="cancel()">Cancel</button>
     </div>
 </form>
-

@@ -1,44 +1,49 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ToastrModule } from 'ngx-toastr';
-import { NgbDatepickerModule, NgbDropdownModule, NgbPagination } from '@ng-bootstrap/ng-bootstrap';
-import { MatTabsModule } from '@angular/material/tabs';
-import { FileUploadModule } from 'ng2-file-upload';
-import { MatNativeDateModule } from '@angular/material/core';
-import { PaginationModule } from 'ngx-bootstrap/pagination';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { FileUploadModule } from 'ng2-file-upload';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { TimeagoModule } from 'ngx-timeago';
-
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    NgbDropdownModule,
+    BsDropdownModule.forRoot(),
+    TabsModule.forRoot(),
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'
     }),
-    MatTabsModule,
-    FileUploadModule,
     NgxGalleryModule,
+    NgxSpinnerModule.forRoot({
+      type: 'line-scale-party'
+    }),
+    FileUploadModule,
     BsDatepickerModule.forRoot(),
     PaginationModule.forRoot(),
-    TimeagoModule.forRoot()
-    
-    
+    ButtonsModule.forRoot(),
+    TimeagoModule.forRoot(),
+    ModalModule.forRoot()
   ],
   exports: [
-    NgbDropdownModule,
+    BsDropdownModule,
     ToastrModule,
-    MatTabsModule,
-    FileUploadModule,
-    PaginationModule,
-    BsDatepickerModule,
+    TabsModule,
     NgxGalleryModule,
-    TimeagoModule
-
+    NgxSpinnerModule,
+    FileUploadModule,
+    BsDatepickerModule,
+    PaginationModule,
+    ButtonsModule,
+    TimeagoModule,
+    ModalModule
   ]
 })
 export class SharedModule { }

@@ -13,7 +13,6 @@ import { MembersService } from 'src/app/_services/members.service';
   styleUrls: ['./member-edit.component.css']
 })
 export class MemberEditComponent implements OnInit {
-  [x: string]: any;
   @ViewChild('editForm') editForm: NgForm | undefined;
   @HostListener('window:beforeunload', ['$event']) unloadNotification($event:any) {
     if (this.editForm?.dirty) {
@@ -22,18 +21,21 @@ export class MemberEditComponent implements OnInit {
   }
   member: Member | undefined;
   user: User | null = null;
-  constructor(private accountService: AccountService, private memberService: MembersService, private toastr: ToastrService){
+
+  constructor(private accountService: AccountService, private memberService: MembersService, 
+      private toastr: ToastrService) { 
     this.accountService.currentUser$.pipe(take(1)).subscribe({
       next: user => this.user = user
     })
   }
+
   ngOnInit(): void {
     this.loadMember();
   }
 
   loadMember() {
     if (!this.user) return;
-    this.memberService.getMember(this.user.user).subscribe({
+    this.memberService.getMember(this.user.username).subscribe({
       next: member => this.member = member
     })
   }
@@ -46,5 +48,4 @@ export class MemberEditComponent implements OnInit {
       }
     })
   }
-
 }
