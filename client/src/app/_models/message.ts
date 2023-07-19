@@ -1,10 +1,10 @@
 export interface Message {
     id: number;
     senderId: number;
-    senderUser: string;
+    senderUsername: string;
     senderPhotoUrl: string;
     recipientId: number;
-    recipientUser: string;
+    recipientUsername: string;
     recipientPhotoUrl: string;
     content: string;
     dateRead?: Date;

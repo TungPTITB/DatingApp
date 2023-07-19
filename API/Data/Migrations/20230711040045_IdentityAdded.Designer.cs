@@ -24,25 +24,19 @@ namespace API.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("TEXT");
-
                     b.Property<string>("Name")
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
-
                     b.Property<string>("NormalizedName")
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
-
                     b.HasKey("Id");
-
                     b.HasIndex("NormalizedName")
                         .IsUnique()
                         .HasDatabaseName("RoleNameIndex");
-
                     b.ToTable("AspNetRoles", (string)null);
                 });
 
@@ -51,100 +45,65 @@ namespace API.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("INTEGER");
-
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasColumnType("TEXT");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("TEXT");
-
                     b.Property<string>("Country")
-                        .IsRequired()
                         .HasColumnType("TEXT");
-
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
-
                     b.Property<DateOnly>("DateOfBirth")
                         .HasColumnType("TEXT");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
-
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("INTEGER");
-
                     b.Property<string>("Gender")
-                        .IsRequired()
                         .HasColumnType("TEXT");
-
                     b.Property<string>("Interests")
-                        .IsRequired()
                         .HasColumnType("TEXT");
-
                     b.Property<string>("Introduction")
-                        .IsRequired()
                         .HasColumnType("TEXT");
-
                     b.Property<string>("KnownAs")
-                        .IsRequired()
                         .HasColumnType("TEXT");
-
                     b.Property<DateTime>("LastActive")
                         .HasColumnType("TEXT");
-
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("INTEGER");
-
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("TEXT");
-
                     b.Property<string>("LookingFor")
-                        .IsRequired()
                         .HasColumnType("TEXT");
-
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
-
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
-
                     b.Property<string>("PasswordHash")
                         .HasColumnType("TEXT");
-
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("TEXT");
-
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("INTEGER");
-
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("TEXT");
-
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("INTEGER");
-
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
-
                     b.HasKey("Id");
-
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
-
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
-
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
@@ -152,14 +111,10 @@ namespace API.Data.Migrations
                 {
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
-
                     b.Property<int>("RoleId")
                         .HasColumnType("INTEGER");
-
                     b.HasKey("UserId", "RoleId");
-
                     b.HasIndex("RoleId");
-
                     b.ToTable("AspNetUserRoles", (string)null);
                 });
 
@@ -168,51 +123,27 @@ namespace API.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
                     b.Property<string>("Content")
-                        .IsRequired()
                         .HasColumnType("TEXT");
-
                     b.Property<DateTime?>("DateRead")
                         .HasColumnType("TEXT");
-
                     b.Property<DateTime>("MessageSent")
                         .HasColumnType("TEXT");
-
                     b.Property<bool>("RecipientDeleted")
                         .HasColumnType("INTEGER");
-
                     b.Property<int>("RecipientId")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("RecipientUser")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("RecipientUsername")
-                        .IsRequired()
                         .HasColumnType("TEXT");
-
                     b.Property<bool>("SenderDeleted")
                         .HasColumnType("INTEGER");
-
                     b.Property<int>("SenderId")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("SenderUser")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("SenderUsername")
-                        .IsRequired()
                         .HasColumnType("TEXT");
-
                     b.HasKey("Id");
-
                     b.HasIndex("RecipientId");
-
                     b.HasIndex("SenderId");
-
                     b.ToTable("Messages");
                 });
 
@@ -221,25 +152,16 @@ namespace API.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
                     b.Property<int>("AppUserId")
                         .HasColumnType("INTEGER");
-
                     b.Property<bool>("IsMain")
                         .HasColumnType("INTEGER");
-
                     b.Property<string>("PublicId")
-                        .IsRequired()
                         .HasColumnType("TEXT");
-
                     b.Property<string>("Url")
-                        .IsRequired()
                         .HasColumnType("TEXT");
-
                     b.HasKey("Id");
-
                     b.HasIndex("AppUserId");
-
                     b.ToTable("Photos");
                 });
 
@@ -247,14 +169,10 @@ namespace API.Data.Migrations
                 {
                     b.Property<int>("SourceUserId")
                         .HasColumnType("INTEGER");
-
                     b.Property<int>("TargetUserId")
                         .HasColumnType("INTEGER");
-
                     b.HasKey("SourceUserId", "TargetUserId");
-
                     b.HasIndex("TargetUserId");
-
                     b.ToTable("Likes");
                 });
 
@@ -263,20 +181,14 @@ namespace API.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
                     b.Property<string>("ClaimType")
                         .HasColumnType("TEXT");
-
                     b.Property<string>("ClaimValue")
                         .HasColumnType("TEXT");
-
                     b.Property<int>("RoleId")
                         .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
-
                     b.HasIndex("RoleId");
-
                     b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
@@ -285,20 +197,14 @@ namespace API.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
                     b.Property<string>("ClaimType")
                         .HasColumnType("TEXT");
-
                     b.Property<string>("ClaimValue")
                         .HasColumnType("TEXT");
-
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
-
                     b.HasIndex("UserId");
-
                     b.ToTable("AspNetUserClaims", (string)null);
                 });
 
@@ -306,20 +212,14 @@ namespace API.Data.Migrations
                 {
                     b.Property<string>("LoginProvider")
                         .HasColumnType("TEXT");
-
                     b.Property<string>("ProviderKey")
                         .HasColumnType("TEXT");
-
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("TEXT");
-
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
-
                     b.HasKey("LoginProvider", "ProviderKey");
-
                     b.HasIndex("UserId");
-
                     b.ToTable("AspNetUserLogins", (string)null);
                 });
 
@@ -327,18 +227,13 @@ namespace API.Data.Migrations
                 {
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
-
                     b.Property<string>("LoginProvider")
                         .HasColumnType("TEXT");
-
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
-
                     b.Property<string>("Value")
                         .HasColumnType("TEXT");
-
                     b.HasKey("UserId", "LoginProvider", "Name");
-
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
@@ -349,16 +244,13 @@ namespace API.Data.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("API.Entities.AppUser", "UserName")
+                    b.HasOne("API.Entities.AppUser", "User")
                         .WithMany("UserRoles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
                     b.Navigation("Role");
-
-                    b.Navigation("UserName");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("API.Entities.Message", b =>
@@ -368,15 +260,12 @@ namespace API.Data.Migrations
                         .HasForeignKey("RecipientId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
                     b.HasOne("API.Entities.AppUser", "Sender")
                         .WithMany("MessagesSent")
                         .HasForeignKey("SenderId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
                     b.Navigation("Recipient");
-
                     b.Navigation("Sender");
                 });
 
@@ -387,7 +276,6 @@ namespace API.Data.Migrations
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
                     b.Navigation("AppUser");
                 });
 
@@ -398,15 +286,12 @@ namespace API.Data.Migrations
                         .HasForeignKey("SourceUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
                     b.HasOne("API.Entities.AppUser", "TargetUser")
                         .WithMany("LikedByUsers")
                         .HasForeignKey("TargetUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
                     b.Navigation("SourceUser");
-
                     b.Navigation("TargetUser");
                 });
 
@@ -454,15 +339,10 @@ namespace API.Data.Migrations
             modelBuilder.Entity("API.Entities.AppUser", b =>
                 {
                     b.Navigation("LikedByUsers");
-
                     b.Navigation("LikedUsers");
-
                     b.Navigation("MessagesReceived");
-
                     b.Navigation("MessagesSent");
-
                     b.Navigation("Photos");
-
                     b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618

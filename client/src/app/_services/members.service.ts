@@ -7,7 +7,7 @@ import { PaginatedResult } from '../_models/pagination';
 import { User } from '../_models/user';
 import { UserParams } from '../_models/userParams';
 import { AccountService } from './account.service';
-import { getPaginatedResult, getPaginationHeaders } from './paginationHelper.service';
+import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +57,7 @@ export class MembersService {
     params = params.append('maxAge', userParams.maxAge);
     params = params.append('gender', userParams.gender);
     params = params.append('orderBy', userParams.orderBy);
+    params = params.append('CurrentUsername', userParams.CurrentUsername);
 
     return getPaginatedResult<Member[]>(this.baseUrl + 'users', params, this.http).pipe(
       map(response => {
@@ -66,14 +67,14 @@ export class MembersService {
     )
   }
 
-  getMember(user: string) {
+  getMember(username: string) {
     const member = [...this.memberCache.values()]
       .reduce((arr, elem) => arr.concat(elem.result), [])
-      .find((member: Member) => member.userName === user);
+      .find((member: Member) => member.userName === username);
 
     if (member) return of(member);
 
-    return this.http.get<Member>(this.baseUrl + 'users/' + user);
+    return this.http.get<Member>(this.baseUrl + 'users/' + username);
   }
 
   updateMember(member: Member) {
@@ -93,8 +94,8 @@ export class MembersService {
     return this.http.delete(this.baseUrl + 'users/delete-photo/' + photoId);
   }
 
-  addLike(user: string) {
-    return this.http.post(this.baseUrl + 'likes/' + user, {});
+  addLike(username: string) {
+    return this.http.post(this.baseUrl + 'likes/' + username, {});
   }
 
   getLikes(predicate: string, pageNumber: number, pageSize: number) {

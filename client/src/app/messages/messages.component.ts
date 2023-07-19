@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Message } from '../_models/message';
 import { Pagination } from '../_models/pagination';
 import { MessageService } from '../_services/message.service';
+import { UserParams } from '../_models/userParams';
+import { User } from '../_models/user';
 
 @Component({
   selector: 'app-messages',
@@ -15,6 +17,7 @@ export class MessagesComponent implements OnInit {
   pageNumber = 1;
   pageSize = 5;
   loading = false;
+  username = 'lisa';
 
   constructor(private messageService: MessageService) { }
 
@@ -24,7 +27,8 @@ export class MessagesComponent implements OnInit {
 
   loadMessages() {
     this.loading = true;
-    this.messageService.getMessages(this.pageNumber, this.pageSize, this.container).subscribe({
+    //this.username = this.messageService.getUsernameFromLocalStorage();
+    this.messageService.getMessages(this.pageNumber, this.pageSize, this.container, this.username).subscribe({
       next: response => {
         this.messages = response.result;
         this.pagination = response.pagination;

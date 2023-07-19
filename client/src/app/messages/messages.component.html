@@ -1,3 +1,4 @@
+
 <div class="mb-4 d-flex">
     <div class="btn-group" name="container">
         <button 
@@ -44,8 +45,8 @@
         <tbody class="align-middle">
             <tr [hidden]="loading" *ngFor="let message of messages"
                 routerLink="{{container === 'Outbox' 
-                    ? '/members/' + message.recipientUser 
-                    : '/members/' + message.senderUser}}"
+                    ? '/members/' + message.recipientUsername 
+                    : '/members/' + message.senderUsername}}"
                 [queryParams]="{tab: 'Messages'}"
             >
                 <td>{{message.content}}</td>
@@ -55,14 +56,14 @@
                             class="img-circle rounded-circle me-2"
                             src="{{message.recipientPhotoUrl || './assets/user.png'}}" 
                             alt="recipient photo">
-                        <strong>{{message.recipientUser | titlecase}}</strong>
+                        <strong>{{message.recipientUsername | titlecase}}</strong>
                     </div>
                     <div *ngIf="container !== 'Outbox'">
                         <img 
                             class="img-circle rounded-circle me-2"
                             src="{{message.senderPhotoUrl || './assets/user.png'}}" 
                             alt="recipient photo">
-                        <strong>{{message.senderUser | titlecase}}</strong>
+                        <strong>{{message.senderUsername | titlecase}}</strong>
                     </div>
                 </td>
                 <td>{{message.messageSent | timeago}}</td>
