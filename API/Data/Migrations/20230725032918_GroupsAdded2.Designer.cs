@@ -3,6 +3,7 @@ using System;
 using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230725032918_GroupsAdded2")]
+    partial class GroupsAdded2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.0-preview.4.23259.3");
@@ -37,6 +40,7 @@ namespace API.Data.Migrations
                         .HasDatabaseName("RoleNameIndex");
                     b.ToTable("AspNetRoles", (string)null);
                 });
+
             modelBuilder.Entity("API.Entities.AppUser", b =>
                 {
                     b.Property<int>("Id")
@@ -103,6 +107,7 @@ namespace API.Data.Migrations
                         .HasDatabaseName("UserNameIndex");
                     b.ToTable("AspNetUsers", (string)null);
                 });
+
             modelBuilder.Entity("API.Entities.AppUserRole", b =>
                 {
                     b.Property<int>("UserId")
@@ -163,6 +168,7 @@ namespace API.Data.Migrations
                     b.HasIndex("SenderId");
                     b.ToTable("Messages");
                 });
+
             modelBuilder.Entity("API.Entities.Photo", b =>
                 {
                     b.Property<int>("Id")
@@ -180,6 +186,7 @@ namespace API.Data.Migrations
                     b.HasIndex("AppUserId");
                     b.ToTable("Photos");
                 });
+
             modelBuilder.Entity("API.Entities.UserLike", b =>
                 {
                     b.Property<int>("SourceUserId")
@@ -190,6 +197,7 @@ namespace API.Data.Migrations
                     b.HasIndex("TargetUserId");
                     b.ToTable("Likes");
                 });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.Property<int>("Id")
@@ -205,6 +213,7 @@ namespace API.Data.Migrations
                     b.HasIndex("RoleId");
                     b.ToTable("AspNetRoleClaims", (string)null);
                 });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
                     b.Property<int>("Id")
@@ -220,6 +229,7 @@ namespace API.Data.Migrations
                     b.HasIndex("UserId");
                     b.ToTable("AspNetUserClaims", (string)null);
                 });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
                     b.Property<string>("LoginProvider")
@@ -234,6 +244,7 @@ namespace API.Data.Migrations
                     b.HasIndex("UserId");
                     b.ToTable("AspNetUserLogins", (string)null);
                 });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
                     b.Property<int>("UserId")
@@ -247,6 +258,7 @@ namespace API.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
+
             modelBuilder.Entity("API.Entities.AppUserRole", b =>
                 {
                     b.HasOne("API.Entities.AppRole", "Role")
@@ -285,6 +297,7 @@ namespace API.Data.Migrations
                     b.Navigation("Recipient");
                     b.Navigation("Sender");
                 });
+
             modelBuilder.Entity("API.Entities.Photo", b =>
                 {
                     b.HasOne("API.Entities.AppUser", "AppUser")
@@ -294,6 +307,7 @@ namespace API.Data.Migrations
                         .IsRequired();
                     b.Navigation("AppUser");
                 });
+
             modelBuilder.Entity("API.Entities.UserLike", b =>
                 {
                     b.HasOne("API.Entities.AppUser", "SourceUser")
@@ -309,6 +323,7 @@ namespace API.Data.Migrations
                     b.Navigation("SourceUser");
                     b.Navigation("TargetUser");
                 });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("API.Entities.AppRole", null)
@@ -317,6 +332,7 @@ namespace API.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
                     b.HasOne("API.Entities.AppUser", null)
@@ -325,6 +341,7 @@ namespace API.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
                     b.HasOne("API.Entities.AppUser", null)
@@ -333,6 +350,7 @@ namespace API.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
                     b.HasOne("API.Entities.AppUser", null)
@@ -341,10 +359,12 @@ namespace API.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
+
             modelBuilder.Entity("API.Entities.AppRole", b =>
                 {
                     b.Navigation("UserRoles");
                 });
+
             modelBuilder.Entity("API.Entities.AppUser", b =>
                 {
                     b.Navigation("LikedByUsers");
