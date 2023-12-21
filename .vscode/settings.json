@@ -4,5 +4,6 @@
         "datepicker",
         "tabset",
         "toastr"
-    ]
+    ],
+    "git.ignoreLimitWarning": true
 }
